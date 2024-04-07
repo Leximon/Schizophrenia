@@ -78,7 +78,15 @@ public class SchizophreniaPlugin extends JavaPlugin {
                     .waitTicks(10)
                     .leave(1)
                     .wait(6)
-                    .message(2, "...", "heh", "verdient", "ok")
+                    .message(2, "...", "heh", "verdient", "ok"),
+            SchizoMessageSequence.create(1)
+                    .message(1, "n")
+                    .wait(2)
+                    .message(1, "ni")
+                    .waitTicks(50)
+                    .message(1, "nichts ;)")
+                    .waitTicks(10)
+                    .leave(1)
 
     );
 
