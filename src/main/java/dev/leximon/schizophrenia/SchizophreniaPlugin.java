@@ -62,13 +62,24 @@ public class SchizophreniaPlugin extends JavaPlugin {
             SchizoMessageSequence.create(1)
                     .message(1, "will wer frost walker?", "hab nen lodestone", "EY")
                     .wait(40)
-                    .message(1, "ne", "bre"),
+                    .message(2, "ne", "bre"),
             SchizoMessageSequence.create(2)
                     .message(1, "NETHERITE! ENDLICH lmao", "OMG gold bläcke", "h")
                     .wait(5)
                     .message(2, "cool $1", "meins $1", "$1 darf ich?"),
             SchizoMessageSequence.create(1)
                     .leave(1)
+                    .waitTicks(10)
+                    .join(1),
+            SchizoMessageSequence.create(2)
+                    .message(1, "hi", "hallo", "moin"),
+            SchizoMessageSequence.create(2)
+                    .message(1, "alter fick dich $2", "DIGGa $2", "JUNGE $2")
+                    .waitTicks(10)
+                    .leave(1)
+                    .wait(6)
+                    .message(2, "...", "heh", "verdient", "ok")
+
     );
 
     @Override
