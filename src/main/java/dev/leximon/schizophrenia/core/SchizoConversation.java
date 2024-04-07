@@ -44,8 +44,12 @@ public class SchizoConversation {
                 return;
             }
 
-            executableTask.run(player, actors);
+            executableTask.run(schizoPlayer.getHandler(), player, actors);
         }
+    }
+
+    public List<String> getActors() {
+        return actors;
     }
 
     public void cancel() {

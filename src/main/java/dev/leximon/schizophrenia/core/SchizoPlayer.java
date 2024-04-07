@@ -53,6 +53,15 @@ public class SchizoPlayer {
     public boolean isConversationActive() {
         return currentConversation != null && !currentConversation.isEnded();
     }
+
+    public SchizoConversation getCurrentConversation() {
+        return currentConversation;
+    }
+
+    public SchizoHandler getHandler() {
+        return handler;
+    }
+
     private List<String> findRandomlyChosenActors(int count) {
         List<Player> candidates = new ArrayList<>(Bukkit.getOnlinePlayers());
         Collections.shuffle(candidates);

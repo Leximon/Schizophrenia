@@ -5,8 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-public class JoinListener implements Listener {
+public class JoinLeaveListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -15,6 +16,13 @@ public class JoinListener implements Listener {
         if (schizoHandler.isSchizo(player)) {
             schizoHandler.infect(player, schizoHandler.randomConversionDelay());
         }
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        SchizoHandler schizoHandler = SchizophreniaPlugin.PLUGIN.getSchizoHandler();
+        schizoHandler.playerLeft(player);
     }
 
 }

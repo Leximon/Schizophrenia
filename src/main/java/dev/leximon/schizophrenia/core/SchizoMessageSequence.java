@@ -67,7 +67,7 @@ public class SchizoMessageSequence {
     }
 
     public interface ExecutableSequenceTask extends SequenceTask {
-        void run(Player to, List<String> actors);
+        void run(SchizoHandler handler, Player to, List<String> actors);
     }
 
     public record WaitSequenceTask(int ticks) implements SequenceTask {
@@ -76,7 +76,7 @@ public class SchizoMessageSequence {
     public record MessageSequenceTask(int actorId, String[] messageVariants) implements ExecutableSequenceTask {
 
         @Override
-        public void run(Player to, List<String> actors) {
+        public void run(SchizoHandler handler, Player to, List<String> actors) {
             String formattedMessage = messageVariants[RANDOM.nextInt(messageVariants.length)];
             for (int actorIndex = 0; actorIndex < actors.size(); actorIndex++) {
                 String actor = actors.get(actorIndex);
@@ -97,7 +97,7 @@ public class SchizoMessageSequence {
     public record JoinOrLeaveSequenceTask(int actorId, boolean join) implements ExecutableSequenceTask {
 
         @Override
-        public void run(Player to, List<String> actors) {
+        public void run(SchizoHandler handler, Player to, List<String> actors) {
             String translationKey = join ? "multiplayer.player.joined" : "multiplayer.player.left";
             String targetActor = actorId == 0
                     ? to.getName()
@@ -115,6 +115,7 @@ public class SchizoMessageSequence {
             } else {
                 to.unlistPlayer(targetPlayer);
                 to.hidePlayer(SchizophreniaPlugin.PLUGIN, targetPlayer);
+                handler.playerLeft(targetPlayer);
             }
         }
 

@@ -61,4 +61,17 @@ public class SchizoHandler {
         return new SchizoHandler(Arrays.asList(sequences));
     }
 
+    public void playerLeft(Player targetPlayer) {
+
+        for (SchizoPlayer value : schizoPlayers.values()) {
+            SchizoConversation currentConversation = value.getCurrentConversation();
+            if (currentConversation == null)
+                continue;
+
+            List<String> actors = currentConversation.getActors();
+            if (actors.contains(targetPlayer.getName())) {
+                currentConversation.cancel();
+            }
+        }
+    }
 }
