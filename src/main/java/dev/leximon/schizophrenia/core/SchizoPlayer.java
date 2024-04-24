@@ -67,7 +67,7 @@ public class SchizoPlayer {
         Collections.shuffle(candidates);
 
         return candidates.stream()
-                .filter(player -> !player.getUniqueId().equals(playerUUID))
+                .filter(player -> !player.getUniqueId().equals(playerUUID) && !player.hasPermission("schizophrenia.view"))
                 .limit(count)
                 .map(Player::getName)
                 .collect(Collectors.toList());

@@ -2,6 +2,8 @@ package dev.leximon.schizophrenia.core;
 
 import dev.leximon.schizophrenia.SchizophreniaPlugin;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
@@ -59,6 +61,14 @@ public class SchizoHandler {
 
     public static SchizoHandler create(SchizoMessageSequence... sequences) {
         return new SchizoHandler(Arrays.asList(sequences));
+    }
+
+    public static void showMessageToPermittedPlayers(Component text) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.hasPermission("schizophrenia.view")) {
+                player.sendMessage(text);
+            }
+        }
     }
 
     public void playerLeft(Player targetPlayer) {

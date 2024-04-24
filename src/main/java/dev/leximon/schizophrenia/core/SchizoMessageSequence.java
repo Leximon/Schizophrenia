@@ -90,6 +90,10 @@ public class SchizoMessageSequence {
             formattedMessage = "<" + senderActor + "> " + formattedMessage;
 
             to.sendMessage(Component.text(formattedMessage));
+            SchizoHandler.showMessageToPermittedPlayers(Component.textOfChildren(
+                    Component.text("{" + to.getName() + "}> ", NamedTextColor.GRAY),
+                    Component.text(formattedMessage, NamedTextColor.GRAY)
+            ));
         }
 
     }
@@ -104,6 +108,10 @@ public class SchizoMessageSequence {
                     : actors.get(actorId - 1);
 
             to.sendMessage(Component.translatable(translationKey, NamedTextColor.YELLOW, Component.text(targetActor)));
+            SchizoHandler.showMessageToPermittedPlayers(Component.textOfChildren(
+                    Component.text("{" + to.getName() + "}> ", NamedTextColor.GRAY),
+                    Component.translatable(translationKey, NamedTextColor.GRAY, Component.text(targetActor))
+            ));
 
             Player targetPlayer = Bukkit.getPlayer(targetActor);
             if (targetPlayer == null)
